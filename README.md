@@ -1,5 +1,5 @@
 # SparseGaussian_lorenz
-Experimental code for fitting sparse variational Gaussian processes to Lorenz system dynamics using `GPJax`
+Experimental code for fitting sparse variational Gaussian processes to Lorenz system dynamics using `GPJax`, using ELBO Maximization / Variational Free Energy minimization.
 
 This repository contains experimental code for fitting a sparse variational Gaussian process (SVGP) to time-series data from the Lorenz attractor using GPJax and JAX. The implementation demonstrates scalable Bayesian inference on chaotic dynamical systems through variational approximation methods.
 
