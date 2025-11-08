@@ -7,11 +7,14 @@ Problem Setup:
 The code models the derivative (vector field) of the Lorenz attractor by learning the finite-difference mapping from 3D state vectors to their temporal increments. Training data consists of approximately 20,000 state-derivative pairs generated from two distinct Lorenz orbits integrated over 50 time units.
 
 Technical Approach:
-Sparse Variational Inference: Implements the collapsed variational Gaussian framework following Titsias (2009) variational_families, using 1000 inducing points to approximate the full GP posterior
-Inducing Point Initialization: K-means clustering on the training states to strategically place inducing points in regions of high data density
-Objective Function: Maximizes the evidence lower bound (ELBO) via the collapsed formulation objectives, which analytically marginalizes variational parameters for computational efficiency
-Numerical Stability: Data normalization (zero mean, unit variance), increased jitter (1e-4) for Cholesky decompositions, and conservative learning rate (1e-4) to prevent training collapse
-Precision: All computations use float64 precision with JAX's x64 mode enabled
+- Sparse Variational Inference: Implements the collapsed variational Gaussian framework following Titsias (2009) variational_families, using 1000 inducing points to approximate the full GP posterior
+
+- Inducing Point Initialization: K-means clustering on the training states to strategically place inducing points in regions of high data density
+
+- Objective Function: Maximizes the evidence lower bound (ELBO) via the collapsed formulation objectives, which analytically marginalizes variational parameters for computational efficiency
+
+- Numerical Stability: Data normalization (zero mean, unit variance), increased jitter (1e-4) for Cholesky decompositions, and conservative learning rate (1e-4) to prevent training collapse
+
 Implementation Details:
 The model uses an RBF kernel with learned lengthscale and variance parameters, a zero mean function, and Gaussian likelihood with learned observation noise. Training proceeds for 3000 iterations using the Adam optimizer. The CollapsedVariationalGaussian variational family is appropriate for datasets under 50k points.
 
